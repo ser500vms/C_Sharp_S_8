@@ -5,18 +5,16 @@
 
 int[,] ReverseArrey(int[,] arrey)
 {
-    for (int j = 0; j < arrey.GetLength(1) - 1; j++)
+    int[,] collumsToRows = new int[arrey.GetLength(0), arrey.GetLength(1)];
+    for (int j = 0; j < arrey.GetLength(1); j++)
     {
-        for (int i = 0; i < arrey.GetLength(0) - 1; i++)
+        for (int i = 0; i < arrey.GetLength(0); i++)
         {
-            int buff = arrey[i + 1, j];
-            arrey[i + 1, j] = arrey[i, j + 1];
-            arrey[i, j + 1] = buff;
+            collumsToRows[j, i]  = arrey[i, j]; 
         }
     }
-    return arrey;
+    return collumsToRows;
 }
-
 
 int[,] Generate2DArray(int rows, int collums, int startValue, int finishValue)
 {
@@ -44,7 +42,7 @@ void Print2DArray(int[,] arrey)
     }
 }
 
-int[,] arrey = Generate2DArray(3, 3, 1, 10);
+int[,] arrey = Generate2DArray(4, 4, 1, 10);
 Print2DArray(arrey);
 int[,] reverseArrey = ReverseArrey(arrey);
 Console.WriteLine();

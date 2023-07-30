@@ -3,17 +3,36 @@
 // программа должна вывести сообщение для пользователя.
 
 
-int[,] ReverseArrey(int[,] arrey)
+void FrequencyDictionary(List<int> arrey)
 {
-    int[,] collumsToRows = new int[arrey.GetLength(0), arrey.GetLength(1)];
-    for (int j = 0; j < arrey.GetLength(1); j++)
+    List<int> frequencyDictionary = new ();
+    int count = 0;
+    while(arrey.Count > 0)
     {
-        for (int i = 0; i < arrey.GetLength(0); i++)
+        for ( int i = 0; i < arrey.Count; i++ )
         {
-            collumsToRows[j, i]  = arrey[i, j]; 
+            if (arrey[0] != arrey[i])
+            {
+                frequencyDictionary.Add(arrey[i]);
+                count++;
+            }
         }
+        Console.WriteLine($"Число {arrey[0]} встречается {arrey.Count - count} раз");
+        arrey = frequencyDictionary;
+        frequencyDictionary = new();
+        count = 0;
     }
-    return collumsToRows;
+}
+
+List<int> Convert2DArrayToDynamic(int[,] arrey)
+{
+    List<int> convert2DArrayToDynamic = new List<int>();
+    for ( int i = 0; i < arrey.GetLength(0); i++)
+        for (int j = 0; j < arrey.GetLength(1); j++)
+        {
+            convert2DArrayToDynamic.Add(arrey[i, j]);
+        }
+    return convert2DArrayToDynamic;
 }
 
 int[,] Generate2DArray(int rows, int collums, int startValue, int finishValue)
@@ -44,6 +63,5 @@ void Print2DArray(int[,] arrey)
 
 int[,] arrey = Generate2DArray(4, 4, 1, 10);
 Print2DArray(arrey);
-int[,] reverseArrey = ReverseArrey(arrey);
-Console.WriteLine();
-Print2DArray(reverseArrey);
+List<int> convert2DArrayToDynamic = Convert2DArrayToDynamic(arrey);
+FrequencyDictionary(convert2DArrayToDynamic);

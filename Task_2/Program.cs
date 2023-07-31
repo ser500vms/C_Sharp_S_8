@@ -3,18 +3,37 @@
 // программа должна вывести сообщение для пользователя.
 
 
+// int[,] ReverseArrey(int[,] arrey)
+// {
+//     int[,] collumsToRows = new int[arrey.GetLength(0), arrey.GetLength(1)];
+//     for (int j = 0; j < arrey.GetLength(1); j++)
+//     {
+//         for (int i = 0; i < arrey.GetLength(0); i++)
+//         {
+//             collumsToRows[j, i]  = arrey[i, j]; 
+//         }
+//     }
+//     return collumsToRows;
+// }
+
+// без массива с буффером.
+
 int[,] ReverseArrey(int[,] arrey)
 {
-    int[,] collumsToRows = new int[arrey.GetLength(0), arrey.GetLength(1)];
+    int count = 1;
     for (int j = 0; j < arrey.GetLength(1); j++)
     {
-        for (int i = 0; i < arrey.GetLength(0); i++)
+        for (int i = count; i < arrey.GetLength(0); i++)
         {
-            collumsToRows[j, i]  = arrey[i, j]; 
+            int bufer = arrey[j, i];
+            arrey[j, i] = arrey[i, j];
+            arrey[i, j] = bufer;
         }
+        count++;
     }
-    return collumsToRows;
+    return arrey;
 }
+
 
 int[,] Generate2DArray(int rows, int collums, int startValue, int finishValue)
 {

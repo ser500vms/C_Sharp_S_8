@@ -36,7 +36,9 @@ int[,] DeleteMinRowString(int[,] arrey, List<int> minRowStringIndex)
                     k++;
                 }
             }
-        }
+        } 
+                           l = 0;
+                    k++;
     }
     return arrey2;
 }
